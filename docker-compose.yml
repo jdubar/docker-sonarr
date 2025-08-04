@@ -20,7 +20,8 @@ services:
       - "traefik.http.routers.sonarr.entrypoints=https"
       - "traefik.http.routers.sonarr.tls=true"
       - "traefik.http.services.sonarr.loadbalancer.server.port=8989"
-    networks: proxy
+    networks:
+      - proxy
 
 networks:
   proxy:
