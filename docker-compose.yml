@@ -2,8 +2,7 @@ services:
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
-    env_file:
-      - /media/docker_volumes/docker.env
+    env_file: /media/docker_volumes/docker.env
     volumes:
       - /media/docker_volumes/sonarr:/config
       - /media/libraries/tv:/tv
@@ -12,7 +11,9 @@ services:
     healthcheck:
       test: [ "CMD", "curl", "--fail", "http://127.0.0.1:8989/sonarr/ping" ]
       interval: 30s
+      timeout: 10s
       retries: 3
+      start_period: 40s
     labels:
       traefik.enable: "true"
       traefik.http.routers.sonarr.rule: "Host(`${DOMAIN_NAME?error}`)"
