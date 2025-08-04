@@ -12,9 +12,7 @@ services:
     healthcheck:
       test: [ "CMD", "curl", "--fail", "http://127.0.0.1:8989/sonarr/ping" ]
       interval: 30s
-      timeout: 10s
       retries: 3
-      start_period: 40s
     labels:
       traefik.enable: "true"
       traefik.http.routers.sonarr.rule: "Host(`sonarr.${DOMAIN_NAME}`)"
