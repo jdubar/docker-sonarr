@@ -2,14 +2,12 @@ services:
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - TZ=${TIMEZONE}
+    env_file:
+      - ../.env
     volumes:
-      - ${DOCKER_ROOT}/sonarr:/config
-      - ${LIBRARY_ROOT}/tv:/tv
-      - ${USENET_ROOT}:/usenet
+      - /media/docker_volumes/sonarr:/config
+      - /media/libraries/tv:/tv
+      - /media/usenet:/usenet
     restart: unless-stopped # Automatically restart Sonarr unless explicitly stopped
     healthcheck:
       test: [ "CMD", "curl", "--fail", "http://127.0.0.1:8989/sonarr/ping" ]
