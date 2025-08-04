@@ -16,11 +16,11 @@ services:
       retries: 3
       start_period: 40s
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.sonarr.rule=Host(`sonarr.${DOMAIN}`)"
-      - "traefik.http.routers.sonarr.entrypoints=https"
-      - "traefik.http.routers.sonarr.tls=true"
-      - "traefik.http.services.sonarr.loadbalancer.server.port=8989"
+      traefik.enable: "true"
+      traefik.http.routers.sonarr.rule: "Host(`sonarr.${DOMAIN?error}`)"
+      traefik.http.routers.sonarr.entrypoints: "https"
+      traefik.http.routers.sonarr.tls: "true"
+      traefik.http.services.sonarr.loadbalancer.server.port: "8989"
     networks:
       - proxy
 
